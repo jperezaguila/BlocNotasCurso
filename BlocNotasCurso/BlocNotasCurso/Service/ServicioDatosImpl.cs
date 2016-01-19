@@ -21,29 +21,48 @@ namespace BlocNotasCurso.Service
         //Implementar en texto plano
         public async Task<Usuario> ValidarUsuario(Usuario us)
         {
-            var tabla = client.GetTable<Usuario>();
-            var data =await tabla.CreateQuery().Where(o => o.Login == us.Login && o.Password == us.Password).ToListAsync();
 
-            if (data.Count == 0)
-                return null;
-            return data[0];
+            var tabla = client.GetTable<Usuario>();
+            try
+            {
+                
+                var data =await tabla.CreateQuery().Where(o => o.Login == us.Login && o.Password == us.Password).ToListAsync();
+
+                if (data.Count == 0)
+                    return null;
+                return data[0];
+            }
+            catch (Exception e)
+            {
+               return null;
+            }
 
         }
 
         public async Task<Usuario> AddUsuario(Usuario us)
         {
-            var tabla = client.GetTable<Usuario>();
-            var data = await tabla.CreateQuery().Where(o => o.Login == us.Login).ToListAsync();
 
-            if (data.Count>0)
-                throw new Exception("Usuario ya registrado");
+            var tabla = client.GetTable<Usuario>();
+
+            try
+            {
+                var data = await tabla.CreateQuery().Where(o => o.Login == us.Login)
+                    .ToListAsync();
+                if (data.Count > 0)
+                    return null;
+            }
+            catch (Exception e)
+            {
+
+            }
+
             try
             {
                 await tabla.InsertAsync(us);
             }
             catch (Exception e)
             {
-                throw new Exception("Error al insertar usuario");
+                return null;
             }
             return us;
         }

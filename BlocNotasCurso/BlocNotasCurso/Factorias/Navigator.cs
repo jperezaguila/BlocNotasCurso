@@ -43,9 +43,7 @@ namespace BlocNotasCurso.Factorias
         {
             await Navigation.PopToRootAsync();
         }
-
- 
-
+        
         public async Task<TViewModel> PushAsync<TViewModel>(Action<TViewModel> action = null) where TViewModel : class, IViewModel
         {
             TViewModel viewModel;

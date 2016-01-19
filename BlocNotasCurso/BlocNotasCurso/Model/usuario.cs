@@ -13,7 +13,7 @@ namespace BlocNotasCurso.Model
         public String Password { get; set; }
         public String Nombre { get; set; }
         public String Apellidos { get; set; }
-        public String Foto { get; set; }
+        //public String Foto { get; set; }
 
     }
 

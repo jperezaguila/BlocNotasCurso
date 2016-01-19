@@ -14,5 +14,7 @@ namespace BlocNotasCurso.View
         {
             InitializeComponent();
         }
+
+       
     }
 }

@@ -21,21 +21,18 @@ namespace BlocNotasCurso.ViewModel
             cmdAlta=new Command (NuevoUsuario);
         }
 
-        protected string TituloIniciar  { get { return "Iniciar Sesión"; } }
-        protected string TituloRegistro { get { return "Nuevo Usuario"; } }
-        protected string TituloLogin    { get { return "Nombre de Usuario"; } }
-        protected string TituloPassword { get { return "Contraseña"; } }
+        public string TituloIniciar  { get { return "Iniciar Sesión"; } }
+        public string TituloRegistro { get { return "Nuevo Usuario"; } }
+        public string TituloLogin    { get { return "Nombre de Usuario"; } }
+        public string TituloPassword { get { return "Contraseña"; } }
 
         private Usuario _usuario=new Usuario();
 
-        private Usuario Usuario
+        public Usuario Usuario
         {
             get { return _usuario; }
             set { SetProperty(ref _usuario, value); }
-
-
         }
-
 
         private async void IniciarSesion()
         {

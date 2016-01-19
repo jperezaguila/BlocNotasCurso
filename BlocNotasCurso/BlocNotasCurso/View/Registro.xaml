@@ -6,11 +6,11 @@
     <Label Text="Login"></Label>
     <Entry Text="{Binding Usuario.Login}"></Entry>
     <Label Text="Password"></Label>
-    <Entry Text ="{Binding Usuario.Password}"></Entry>
+    <Entry Text="{Binding Usuario.Password}"></Entry>
     <Label Text="Nombre"></Label>
     <Entry Text="{Binding Usuario.Nombre}"></Entry>
     <Label Text="Apellidos"></Label>
     <Entry Text="{Binding Usuario.Apellidos}"></Entry>
-    <Button Text="Nuevo Usuario" Command="{Binding ComButton}"></Button>
+    <Button Text="Nuevo usuario" Command="{Binding cmdAlta}"></Button>
   </StackLayout>
 </ContentPage>
