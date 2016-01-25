@@ -32,6 +32,9 @@ namespace BlocNotasCurso.Modulo
             viewFactory.Register<LoginViewModel, Login>();
             viewFactory.Register<RegistroViewModel, Registro>();
             viewFactory.Register<PrincipalViewModel, Principal>();
+            //25-01
+            viewFactory.Register<NuevoBlocViewModel,NuevoBlocView>();
+
 
         }
 

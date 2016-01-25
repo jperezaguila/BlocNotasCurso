@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using BlocNotasCurso.Model;
 using BlocNotasCurso.Util;
@@ -10,14 +11,44 @@ namespace BlocNotasCurso.Service
     {
 
         private MobileServiceClient client;
-
-
+        
         public ServicioDatosImpl()
         {
-            client=new MobileServiceClient(Cadenas.UrlServicio,Cadenas.TokenServicio);
+            client = new MobileServiceClient(Cadenas.UrlServicio, Cadenas.TokenServicio);
+        }
+        //25-01
+        #region Bloc
+
+        public async Task AddBloc(Bloc bloc)
+        {
+            var table = client.GetTable<Bloc>();
+            await table.InsertAsync(bloc);
+
         }
 
+        public async Task<List<Bloc>> GetBlocs(string usuario)
+        {
+            var table = client.GetTable<Bloc>();
+            var data = await table.CreateQuery().Where(o => o.Id == usuario).ToListAsync();
+            return data;
 
+        }
+
+        public async Task DeleteBloc(Bloc bloc)
+        {
+            var table = client.GetTable<Bloc>();
+            await table.DeleteAsync(bloc);
+        }
+
+        public Task UpdateBloc(Bloc bloc)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
+
+        
+        #region Usuario
         //Implementar en texto plano
         public async Task<Usuario> ValidarUsuario(Usuario us)
         {
@@ -25,7 +56,7 @@ namespace BlocNotasCurso.Service
             var tabla = client.GetTable<Usuario>();
             try
             {
-                
+
                 var data =await tabla.CreateQuery().Where(o => o.Login == us.Login && o.Password == us.Password).ToListAsync();
 
                 if (data.Count == 0)
@@ -34,10 +65,12 @@ namespace BlocNotasCurso.Service
             }
             catch (Exception e)
             {
-               return null;
+                return null;
             }
 
         }
+
+        
 
         public async Task<Usuario> AddUsuario(Usuario us)
         {
@@ -59,6 +92,8 @@ namespace BlocNotasCurso.Service
             try
             {
                 await tabla.InsertAsync(us);
+                //25-01
+                //us = await ValidarUsuario(us);
             }
             catch (Exception e)
             {
@@ -69,12 +104,16 @@ namespace BlocNotasCurso.Service
 
         public Task<Usuario> UpdateUsuario(Usuario us, string id)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public Task DeleteUsuario(string id)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
+
+        #endregion
+
+
     }
 }
